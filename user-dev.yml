@@ -1,0 +1,29 @@
+server:
+  port: ${port:9001}
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud
+    username: root
+    password: root
+  application:
+    name: user-service # 应用名称
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: cn.lrving.user.pojo
+
+# 配置eureka
+eureka:
+  client:
+    service-url:    # 配置eureka服务地址多个地址以','隔开
+      defaultZone: http://localhost:8761/eureka,http://localhost:8762/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true #更倾向于使用ip地址，不然在消费者调用时host则会显示这台电脑名字
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
+# 配置日志
+logging:
+  level:
+    cn.lrving: debug
